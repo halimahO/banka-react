@@ -4,6 +4,9 @@ Banka is a light-weight core banking application that powers banking operations 
 
 ---
 
+[![Build Status](https://travis-ci.com/halimahO/banka-react.svg?branch=develop)](https://travis-ci.com/halimahO/banka-react)
+[![Coverage Status](https://coveralls.io/repos/github/halimahO/banka-react/badge.svg?branch=ch-setup-test-167524682)](https://coveralls.io/github/halimahO/banka-react?branch=ch-setup-test-167524682)
+
 ## Features
 
 - User (client) can sign up
