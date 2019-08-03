@@ -30,28 +30,6 @@ class Login extends React.Component {
                       PROFILE
                     </span>
                   </li>
-                  <li data-menu="debit-account">
-                    <span className="fontAwesame">
-                      <i
-                        data-menu="debit-account"
-                        className="fas fa-credit-card menu-image"
-                      />
-                    </span>
-                    <span data-menu="debit-account" className="menu-name">
-                      DEBIT ACCOUNT
-                    </span>
-                  </li>
-                  <li data-menu="credit-account">
-                    <span className="fontAwesame">
-                      <i
-                        data-menu="credit-account"
-                        className="fas fa-credit-card menu-image"
-                      />
-                    </span>
-                    <span data-menu="credit-account" className="menu-name">
-                      CREDIT ACCOUNT
-                    </span>
-                  </li>
                   <li data-menu="view-an-account">
                     <span className="fontAwesame">
                       <i
@@ -100,6 +78,17 @@ class Login extends React.Component {
                       DELETE ACCOUNT
                     </span>
                   </li>
+                  <li data-menu="register-a-staff">
+                    <span className="fontAwesame">
+                      <i
+                        data-menu="register-a-staff"
+                        className="fas fa-plus-square menu-image"
+                      />
+                    </span>
+                    <span data-menu="register-a-staff" className="menu-name">
+                      REGISTER STAFF
+                    </span>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -118,7 +107,7 @@ class Login extends React.Component {
                       </span>
                       <h2 className="m1 md-text">Mercy Ekene</h2>
                       <h4 className="sm-text">mercyekene@gmail.com</h4>
-                      <p className="top-border">Staff</p>
+                      <p className="top-border">Admin</p>
                     </div>
                     <div className="profile-details shadow">
                       <div>Firstname: </div>
@@ -136,114 +125,6 @@ class Login extends React.Component {
                         </button>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div
-                  id="debit-account"
-                  className="items dashboard-area-background shadow"
-                >
-                  <div className="small-acct">
-                    <div className="acct-display select-label">
-                      <label>Debit Account:</label>
-                      <br />
-                    </div>
-                    <div className="acct-display">
-                      <input
-                        className="dashboard-input acct-number-width"
-                        type="text"
-                        placeholder="Account number"
-                      />
-                    </div>
-                    <div className="acct-display">
-                      <button type="submit" className="btn btn-filter cursor">
-                        Submit
-                      </button>
-                    </div>
-                  </div>
-                  <div className="acct-summary-client shadow">
-                    <h4 className="m2">DEBIT THE ACCOUNT</h4>
-                    <p>
-                      <span className="b1">Account Name:</span>
-                      Williams Ebuka
-                    </p>
-                    <p>
-                      <span className="b1">Account Number:</span>
-                      0123456789
-                    </p>
-                    <p>
-                      <span className="b1">Account type:</span>
-                      Current
-                    </p>
-                    <p>
-                      <span className="b1">Status:</span>
-                      Active
-                    </p>
-                    <p>
-                      <span className="b1">Account balance:</span>
-                      #2,000.00
-                    </p>
-                    <input
-                      className="amountInput"
-                      type="number"
-                      placeholder="Amount..."
-                    />
-                    <button type="button" className="btn-small cursor">
-                      DEBIT
-                    </button>
-                  </div>
-                </div>
-                <div
-                  id="credit-account"
-                  className="items dashboard-area-background shadow"
-                >
-                  <div className="small-acct">
-                    <div className="acct-display select-label">
-                      <label>Credit Account:</label>
-                      <br />
-                    </div>
-                    <div className="acct-display">
-                      <input
-                        className="dashboard-input acct-number-width"
-                        type="text"
-                        placeholder="Account number"
-                      />
-                    </div>
-                    <div className="acct-display">
-                      <button type="button" className="btn btn-filter cursor">
-                        Submit
-                      </button>
-                    </div>
-                  </div>
-                  <div className="acct-summary-client shadow">
-                    <h4 className="m2">CREDIT THE ACCOUNT</h4>
-                    <p>
-                      <span className="b1">Account Name:</span>
-                      Williams Ebuka
-                    </p>
-                    <p>
-                      <span className="b1">Account Number:</span>
-                      0123456789
-                    </p>
-                    <p>
-                      <span className="b1">Account type:</span>
-                      Current
-                    </p>
-                    <p>
-                      <span className="b1">Status:</span>
-                      Active
-                    </p>
-                    <p>
-                      <span className="b1">Account balance:</span>
-                      #2,000.00
-                    </p>
-                    <input
-                      className="amountInput"
-                      type="number"
-                      placeholder="Amount..."
-                    />
-                    <button type="button" className="btn-small cursor">
-                      CREDIT
-                    </button>
                   </div>
                 </div>
                 <div
@@ -502,6 +383,58 @@ class Login extends React.Component {
                     >
                       Delete
                     </button>
+                  </div>
+                </div>
+                <div
+                  id="register-a-staff"
+                  className="items dashboard-area-background content2 shadow"
+                >
+                  <div>
+                    <h1 className="heading-title-login md-title">
+                      REGISTER A STAFF/ADMIN
+                    </h1>
+                  </div>
+                  <div className="form-div">
+                    <form className="form-div2 shadow">
+                      <div>
+                        <label>FIRSTNAME</label>
+
+                        <br />
+                        <input type="text" placeholder="Firstname" required />
+                      </div>
+                      <div>
+                        <label>LASTNAME</label>
+
+                        <br />
+                        <input type="text" placeholder="Lastname" required />
+                      </div>
+                      <div>
+                        <label>EMAIL ADDRESS</label>
+
+                        <br />
+                        <input
+                          type="email"
+                          placeholder="Email Address"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label>
+                          <p id="password-label">PASSWORD </p>
+                        </label>
+                        <input type="password" placeholder="*******" required />
+                      </div>
+                      <div>
+                        <label className="container">
+                          Is ADMIN?
+                          <input type="checkbox" />
+                          <span className="checkmark" />
+                        </label>
+                      </div>
+                      <button type="submit" className="btn">
+                        <a href="dashboard-staff.html">REGISTER</a>
+                      </button>
+                    </form>
                   </div>
                 </div>
               </div>
