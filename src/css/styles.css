@@ -270,13 +270,13 @@ label {
 .acct-number-width {
   width: 120px;
 }
-#login-section a,
+.login-section a,
 .history a {
   color: rgba(23, 37, 85, 0.986);
   font-size: 0.8rem;
 }
 
-#login-section a:hover,
+.login-section a:hover,
 .btn1:hover {
   text-decoration: underline;
 }
