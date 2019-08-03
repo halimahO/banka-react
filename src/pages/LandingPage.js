@@ -14,7 +14,6 @@ class LandingPage extends React.Component {
         <HeroSection />
         <ServiceSection />
         <Footer />
-        <h1>test</h1>
       </div>
     );
   }
