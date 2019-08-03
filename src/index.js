@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-import CreateAccount from './pages/CreateAccount';
+import ClientDashboard from './pages/ClientDashboard';
 
-ReactDOM.render(<CreateAccount />, document.getElementById('app'));
+ReactDOM.render(<ClientDashboard />, document.getElementById('app'));
