@@ -1,7 +1,7 @@
 /* Global */
 body {
   font-family: -apple-system, BlinkMacSystemFont, San Francisco, Helvetica Neue,
-    Helvetica, Ubuntu, Roboto, Noto, Segoe UI, Arial, sans-serif;
+    Ubuntu, Roboto, Noto, Segoe UI, Arial, sans-serif;
   padding: 0;
   margin: 0;
 }
@@ -96,10 +96,15 @@ header {
   width: 12rem;
 }
 
-#section-hero {
+.section-hero {
   padding-top: 130px;
   padding-bottom: 130px;
-  /* background-image: linear-gradient(to left,rgba(18, 45, 124, 0.3), rgba(20, 41, 107, 0.586)), url("../img/Picture2.png"); */
+  background-image: linear-gradient(
+      to left,
+      rgba(18, 45, 124, 0.3),
+      rgba(20, 41, 107, 0.586)
+    ),
+    url('../img/Picture2.png');
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
@@ -645,7 +650,7 @@ tr:nth-child(odd) {
   background-color: #e4ebee;
 }
 
-footer {
+.footer {
   text-align: center;
   padding: 2rem 1rem;
   margin: auto;

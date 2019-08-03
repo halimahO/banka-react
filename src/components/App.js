@@ -1,4 +1,5 @@
 /* eslint-disable react/prefer-stateless-function */
+import '../css/styles.css';
 import React from 'react';
 import { hot } from 'react-hot-loader';
 import { Provider } from 'react-redux';
@@ -11,9 +12,9 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <h1>
+        <div>
           <LandingPage />
-        </h1>
+        </div>
       </Provider>
     );
   }

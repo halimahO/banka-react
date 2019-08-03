@@ -1,31 +1,19 @@
 /* eslint-disable react/prefer-stateless-function */
+// import '../styles.css';
 import React from 'react';
 import NavigationBar from '../components/home/NavigationBar';
+import HeroSection from '../components/home/HeroSection';
+import ServiceSection from '../components/home/ServiceSection';
+import Footer from '../components/Footer';
 
 class LandingPage extends React.Component {
   render() {
     return (
       <div>
-        <div>
-          <div>AppName</div>
-          <div>
-            <NavigationBar />
-          </div>
-        </div>
-        <div>
-          <div>AppName</div>
-          <div>AppDesciption</div>
-          <div>getStarted</div>
-        </div>
-        <div>
-          <div>oursevices</div>
-          <div>images</div>
-        </div>
-        <div>
-          <div>social text</div>
-          <div>social</div>
-          <div>copyright</div>
-        </div>
+        <NavigationBar />
+        <HeroSection />
+        <ServiceSection />
+        <Footer />
       </div>
     );
   }
