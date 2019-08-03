@@ -1,14 +1,14 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 
-import NavigationBarShadow from '../components/home/NavigationBarShadow';
+import NavigationBar from '../components/home/NavigationBarLogin';
 import Footer from '../components/Footer';
 
 class Register extends React.Component {
   render() {
     return (
       <div>
-        <NavigationBarShadow />
+        <NavigationBar />
         <div className="login-section padding-bot border shadow">
           <div>
             <h1 className="heading-title-login">REGISTER</h1>
