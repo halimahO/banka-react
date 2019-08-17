@@ -1,10 +1,30 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
-
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import NavigationBar from '../components/home/NavigationBarLogin';
 import Footer from '../components/Footer';
+import loginAction from '../actions/login.action';
 
-class Login extends React.Component {
+class LoginPage extends React.Component {
+  state = {
+    email: '',
+    password: ''
+  };
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+    console.log(e.target.name);
+  };
+
+  handleSubmit = async e => {
+    const { history } = this.props;
+    e.preventDefault();
+    await this.props.loginAction(this.state, history);
+  };
+
   render() {
     return (
       <div>
@@ -18,24 +38,31 @@ class Login extends React.Component {
             </p>
           </div>
           <div className="form-div">
-            <form onSubmit="return goToDashboard()">
+            <form onSubmit={this.handleSubmit}>
               <div>
                 <label>EMAIL ADDRESS</label>
                 <br />
                 <input
                   id="emailInput"
                   type="email"
+                  name="email"
                   placeholder="Email Address"
+                  onChange={this.handleChange}
                   required
                 />
               </div>
               <div>
                 <label>
-                  {' '}
                   <p id="password-label">PASSWORD </p>
                 </label>
-                <input type="password" placeholder="*******" required />
-                <a href>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="*******"
+                  required
+                  onChange={this.handleChange}
+                />
+                <a href="#1">
                   <p id="forgot-password-ptag">Forgot your password?</p>
                 </a>
               </div>
@@ -50,4 +77,21 @@ class Login extends React.Component {
     );
   }
 }
-export default Login;
+
+LoginPage.propTypes = {
+  history: PropTypes.object.isRequired,
+  loginAction: PropTypes.func.isRequired
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    loginAction: async (userCredentials, history) => {
+      return dispatch(await loginAction(userCredentials, history));
+    }
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(LoginPage);
