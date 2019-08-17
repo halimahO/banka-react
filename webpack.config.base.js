@@ -1,8 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: ['@babel/polyfill', './src/index.js'],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'app.bundle.js'
@@ -34,9 +35,17 @@ module.exports = {
       }
     ]
   },
+  devServer: {
+    historyApiFallback: true
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/public/index.html'
+    }),
+    new webpack.DefinePlugin({
+      'process.env.API_URL': JSON.stringify(
+        'https://my-banka-app.herokuapp.com/api/v1/'
+      )
     })
   ]
 };
