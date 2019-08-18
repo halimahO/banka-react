@@ -2,31 +2,21 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import * as types from '../action-types/index';
 
-export const initialState = message => {
-  return { type: types.INITIAL_STATE, payload: message };
-};
-
 export const loginSuccess = user => {
-  return { type: types.SUCCESS, payload: user };
+  return { type: types.LOGIN_SUCCESS, payload: user };
 };
 
 export const loginError = error => {
-  return { type: types.ERROR, payload: error };
-};
-
-export const loadingState = message => {
-  return { type: types.LOADING, payload: message };
+  return { type: types.LOGIN_ERROR, payload: error };
 };
 
 const loginAction = (user, history) => {
   return async dispatch => {
     try {
-      dispatch(initialState('Initial state'));
       const response = await axios.post(
         `${process.env.API_URL}auth/signin`,
         user
       );
-      dispatch(loadingState('Loading state'));
       if (response.status === 200) {
         const { data } = response.data;
         localStorage.setItem('token', data.token);
