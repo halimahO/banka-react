@@ -10,6 +10,7 @@ import setupStore from '../store';
 import LandingPage from '../pages/LandingPage';
 import Login from '../pages/LoginPage';
 import SignUpPage from '../pages/Register';
+import CreateAccountPage from '../pages/CreateAccount';
 
 const store = setupStore();
 class App extends React.Component {
@@ -26,6 +27,7 @@ class App extends React.Component {
             <Route path="/" exact component={LandingPage} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={SignUpPage} />
+            <Route path="/create-account" component={CreateAccountPage} />
           </Switch>
         </Router>
       </Provider>

@@ -20,10 +20,9 @@ const loginAction = (user, history) => {
       if (response.status === 200) {
         const { data } = response.data;
         localStorage.setItem('token', data.token);
-        console.log(toast);
         toast.success('Log In Successful');
         setTimeout(() => {
-          history.push('/dashboard');
+          history.push('/create-account');
         }, 3000);
         dispatch(loginSuccess(data));
       }

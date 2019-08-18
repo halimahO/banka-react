@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import navBarLogo from '../../img/logo-blue.png';
 
 const NavigationBar = () => {
@@ -6,22 +7,22 @@ const NavigationBar = () => {
     <div className="shadow">
       <div className="container">
         <div id="branding">
-          <a href="index.html">
+          <Link to="/">
             <img className="branding" src={navBarLogo} alt="logo-blue" />
-          </a>
+          </Link>
         </div>
         <nav>
           <div className="nav-full">
             <div className="nav-style navbar">
               <ul>
                 <li className="current">
-                  <a href="index.html">Home</a>
+                  <Link to="/">Home</Link>
                 </li>
                 <li>
-                  <a href="sign-in.html">Sign in</a>
+                  <Link to="/login">Sign in</Link>
                 </li>
                 <li>
-                  <a href="register.html">Register</a>
+                  <Link to="/signup">Register</Link>
                 </li>
               </ul>
             </div>
@@ -38,13 +39,13 @@ const NavigationBar = () => {
               <div id="sidebar">
                 <ul>
                   <li className="current">
-                    <a href="index.html">Home</a>
+                    <Link to="/">Home</Link>
                   </li>
                   <li>
-                    <a href="sign-in.html">Sign in</a>
+                    <Link to="/login">Sign in</Link>
                   </li>
                   <li>
-                    <a href="register.html">Register</a>
+                    <Link to="/signup">Register</Link>
                   </li>
                 </ul>
               </div>
