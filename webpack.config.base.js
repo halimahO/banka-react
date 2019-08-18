@@ -16,9 +16,19 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-        exclude: /node_modules/
+        test: /\.(css|scss)$/,
+        include: [path.resolve(__dirname, './src'), /node_modules/],
+        use: [
+          'style-loader',
+          'css-loader',
+          'postcss-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true
+            }
+          }
+        ]
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
