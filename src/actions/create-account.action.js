@@ -27,9 +27,6 @@ const createAccountAction = (type, history) => {
       if (response.status === 201) {
         const { data } = response.data;
         toast.success('Account created Successfully');
-        setTimeout(() => {
-          history.push('/account');
-        }, 3000);
         dispatch(createAccountSuccess(data));
       }
     } catch (err) {

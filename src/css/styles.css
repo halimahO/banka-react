@@ -511,6 +511,7 @@ textarea {
   border-top: 1px solid rgba(23, 37, 85, 0.986);
   border-width: 3px;
   border-radius: 3px;
+  text-transform: capitalize;
 }
 
 .m1 {

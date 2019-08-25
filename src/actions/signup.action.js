@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import * as types from '../action-types';
+import { setCurrentUser } from './auth.action';
 
 export const signupSuccess = user => {
   return { type: types.SIGNUP_SUCCESS, payload: user };
@@ -20,9 +21,11 @@ const signupAction = (user, history) => {
       if (response.status === 201) {
         const { data } = response.data;
         localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data));
         toast.success('Registration Successful');
         setTimeout(() => {
           history.push('/dashboard');
+          dispatch(setCurrentUser(data));
         }, 3000);
         dispatch(signupSuccess(data));
       }

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import * as types from '../action-types/index';
+import { setCurrentUser } from './auth.action';
 
 export const loginSuccess = user => {
   return { type: types.LOGIN_SUCCESS, payload: user };
@@ -20,9 +21,11 @@ const loginAction = (user, history) => {
       if (response.status === 200) {
         const { data } = response.data;
         localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data));
         toast.success('Log In Successful');
         setTimeout(() => {
-          history.push('/create-account');
+          history.push('/dashboard');
+          dispatch(setCurrentUser(data));
         }, 3000);
         dispatch(loginSuccess(data));
       }

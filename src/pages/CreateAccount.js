@@ -78,9 +78,8 @@ CreateAccountPage.propTypes = {
 
 export const mapStateToProps = state => {
   return {
-    firstname:
-      state.userLogin.user.firstname || state.userSignup.user.firstname,
-    lastname: state.userLogin.user.lastname || state.userSignup.user.lasttname
+    firstname: state.auth.user.firstname,
+    lastname: state.auth.user.lastname
   };
 };
 export const mapDispatchToProps = dispatch => {
