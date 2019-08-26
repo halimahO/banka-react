@@ -1,5 +1,3 @@
-/* eslint-disable react/prefer-stateless-function */
-// import '../styles.css';
 import React from 'react';
 import NavigationBar from '../components/home/NavigationBar';
 import HeroSection from '../components/home/HeroSection';

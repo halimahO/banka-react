@@ -1,0 +1,103 @@
+import React from 'react';
+import { mount, shallow } from 'enzyme';
+import { Provider } from 'react-redux';
+import { MemoryRouter as Router, BrowserRouter } from 'react-router-dom';
+import thunk from 'redux-thunk';
+import configMockStore from 'redux-mock-store';
+import NavigationBar from '../components/home/NavigationBar';
+import NavBarDashboard from '../components/home/NavigationBarDashboard';
+import NavigationBarDashboard from '../components/home/NavigationBarDashboard';
+
+const initialState = {
+  isAuthenticated: false,
+  user: null
+};
+
+const mockStore = configMockStore([thunk]);
+const store = mockStore(initialState);
+
+const props = {
+  logout: jest.fn(),
+  auth: {
+    isAuthenticated: false,
+    user: {
+      firstname: 'name',
+      lastname: 'name',
+      type: 'client',
+      token: 'token'
+    }
+  },
+  history: {
+    push: jest.fn()
+  }
+};
+
+const wrapper = shallow(
+  <Provider store={store}>
+    <Router>
+      <NavigationBar {...props} />
+    </Router>
+  </Provider>
+);
+
+describe('<NavigationBar/> rendering', () => {
+  it('should render without crashing', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should simulate logout', () => {
+    props.auth.isAuthenticated = true;
+    const event = {
+      preventDefault: jest.fn()
+    };
+
+    const component = mount(
+      <BrowserRouter>
+        <NavigationBar.WrappedComponent {...props} />
+      </BrowserRouter>
+    );
+    component.find('#logout').simulate('click', event);
+    expect(props.logout).toHaveBeenCalled();
+    expect(props.history.push).toHaveBeenCalled();
+    expect(event.preventDefault).toHaveBeenCalled();
+    props.auth.isAuthenticated = false;
+  });
+
+  it('should simulate sidebar toggle', () => {
+    const component = mount(
+      <BrowserRouter>
+        <NavigationBar.WrappedComponent {...props} />
+      </BrowserRouter>
+    );
+    const instance = component.find('NavigationBar').instance();
+    const spy = jest.spyOn(instance, 'toggleSidebar');
+    instance.forceUpdate();
+    component.find('#menu').simulate('click');
+
+    expect(spy).toHaveBeenCalled();
+  });
+
+  //   it('it should handle logout', () => {
+  //     const link = wrapper.find('#logout');
+  //     const spy = jest.spyOn(wrapper.instance(), 'handleLogOut');
+  //     link.simulate('click');
+  //     const event = { preventefault: jest.fn() };
+  //     wrapper.instance().forceUpdate();
+  //     expect(event.preventDefault).toHaveBeenCalled();
+  //     expect(spy).toHaveBeenCalled();
+  //   });
+});
+
+const wrapperDashboard = shallow(
+  <Provider store={store}>
+    <Router>
+      <NavigationBarDashboard {...props} />
+    </Router>
+  </Provider>
+);
+
+describe('<NavigationBar/> rendering', () => {
+  it('should render without crashing', () => {
+    expect(wrapperDashboard).toMatchSnapshot();
+  });
+});

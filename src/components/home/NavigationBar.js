@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -7,22 +9,28 @@ import menu from '../../img/menu.png';
 import { logout } from '../../actions/auth.action';
 
 class NavigationBar extends React.Component {
+  constructor() {
+    super();
+    this.sidebar = React.createRef();
+  }
+
   handleLogOut = e => {
     e.preventDefault();
     this.props.logout();
     this.props.history.push('/');
   };
 
+  toggleSidebar = () => {
+    const sidebar = this.sidebar.current;
+    if (sidebar.style.display === 'none') {
+      sidebar.style.display = 'block';
+    } else {
+      sidebar.style.display = 'none';
+    }
+  };
+
   render() {
-    const { isAuthenticated, user } = this.props.auth;
-    const toggleSidebar = () => {
-      const sidebar = document.getElementById('sidebar');
-      if (sidebar.style.display === 'none') {
-        sidebar.style.display = 'block';
-      } else {
-        sidebar.style.display = 'none';
-      }
-    };
+    const { isAuthenticated } = this.props.auth;
 
     return (
       <div className="container">
@@ -53,10 +61,8 @@ class NavigationBar extends React.Component {
                     <li>
                       <Link to="/dashboard">Profile</Link>
                     </li>
-                    <li>
-                      <Link onClick={this.handleLogOut} to="/">
-                        Log out
-                      </Link>
+                    <li id="logout" onClick={this.handleLogOut}>
+                      <Link to="/">Log out</Link>
                     </li>
                   </React.Fragment>
                 )}
@@ -70,9 +76,9 @@ class NavigationBar extends React.Component {
                 className="nav-style"
                 src={menu}
                 alt=""
-                onClick={toggleSidebar}
+                onClick={this.toggleSidebar}
               />
-              <div id="sidebar">
+              <div ref={this.sidebar} id="sidebar">
                 <ul>
                   <li className="current">
                     <Link to="/">Home</Link>
@@ -95,7 +101,9 @@ class NavigationBar extends React.Component {
 
 NavigationBar.propTypes = {
   logout: PropTypes.func,
-  history: PropTypes.object
+  history: PropTypes.object,
+  isAuthenticated: PropTypes.bool,
+  auth: PropTypes.object
 };
 
 export const mapStateToProps = state => {

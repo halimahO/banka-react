@@ -38,19 +38,6 @@ const getUserTransaction = accountNo => {
       if (err.message === 'Request failed with status code 404') {
         toast.success('No transaction found on this account');
       } else toast.error('Invalid account number');
-      // if (err.message === 'Network Error') {
-      //   return toast.error('An error occured. Please try Again');
-      // }
-      // const { error } = err.response.data;
-      // toast.error(error);
-      // dispatch(userTransactionError(error));
-      // if (
-      //   error === undefined ||
-      //   Array.isArray(error) ||
-      //   typeof error === 'object'
-      // ) {
-      //   toast.error('Invalid account number');
-      // }
     }
   };
 };

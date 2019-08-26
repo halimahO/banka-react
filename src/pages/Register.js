@@ -1,4 +1,3 @@
-/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -85,7 +84,7 @@ class Register extends React.Component {
           <div className="form-div">
             <form onSubmit={this.handleSubmit}>
               <div>
-                <label>FIRSTNAME</label>
+                <label htmlFor="firstname">FIRSTNAME</label>
                 <br />
                 <span>{this.state.firstnameError}</span>
                 <input
@@ -97,7 +96,7 @@ class Register extends React.Component {
                 />
               </div>
               <div>
-                <label>LASTNAME</label>
+                <label htmlFor="lastname">LASTNAME</label>
                 <br />
                 <span>{this.state.lastnameError}</span>
                 <input
@@ -109,7 +108,7 @@ class Register extends React.Component {
                 />
               </div>
               <div>
-                <label>EMAIL ADDRESS</label>
+                <label htmlFor="emailInput">EMAIL ADDRESS</label>
                 <br />
                 <span>{this.state.emailError}</span>
                 <input
@@ -121,7 +120,7 @@ class Register extends React.Component {
                 />
               </div>
               <div>
-                <label>
+                <label htmlFor="password">
                   <p id="password-label" type="password">
                     PASSWORD
                   </p>

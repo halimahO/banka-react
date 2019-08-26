@@ -1,4 +1,3 @@
-/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import Select from 'react-select';
 import { connect } from 'react-redux';
@@ -45,11 +44,11 @@ class CreateAccountPage extends React.Component {
           <div className="form-div">
             <form onSubmit={this.handleSubmit}>
               <div>
-                <label>FULLNAME</label>
+                <label htmlFor="fullname">FULLNAME</label>
                 <p>{`${this.props.firstname} ${this.props.lastname}`}</p>
               </div>
               <div>
-                <label>ACCOUNT TYPE</label>
+                <label htmlFor="SelectedAccountType">ACCOUNT TYPE</label>
                 <br />
                 <br />
                 <Select

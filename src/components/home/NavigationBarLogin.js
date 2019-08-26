@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import navBarLogo from '../../img/logo-blue.png';
@@ -38,13 +40,13 @@ const NavigationBar = () => {
           </div>
           <div className="nav-not-full">
             <div className="hidden-navbar">
-            <img
-              id="menu"
-              className='nav-style'
-              src={menu}
-              alt=""
-              onClick={toggleSidebar}
-            />
+              <img
+                id="menu"
+                className="nav-style"
+                src={menu}
+                alt=""
+                onClick={toggleSidebar}
+              />
               <div id="sidebar">
                 <ul>
                   <li className="current">

@@ -11,7 +11,7 @@ export const loginError = error => {
   return { type: types.LOGIN_ERROR, payload: error };
 };
 
-const loginAction = (user, history) => {
+export const loginAction = (user, history) => {
   return async dispatch => {
     try {
       const response = await axios.post(

@@ -1,11 +1,13 @@
-/* eslint-disable react/prefer-stateless-function */
+/* eslint-disable react/jsx-key */
 import React from 'react';
 import { connect } from 'react-redux';
 import NavigationBar from '../components/home/NavigationBarDashboard';
 import Footer from '../components/Footer';
+import { fetchUserAccounts } from '../actions/getAllAccount.action';
 import userTransactionAction from '../actions/user-account-action';
 import { debit, credit } from '../actions/transaction.action';
 import image from '../img/dashboard-img.png';
+import PropTypes from 'prop-types';
 
 class ClientDashboard extends React.Component {
   state = {
@@ -25,6 +27,8 @@ class ClientDashboard extends React.Component {
     const showCurrentMenu = menuId => {
       document.getElementById(menuId).classList.add('active');
     };
+
+    this.props.fetchUserAccounts(this.props.auth.email);
 
     Array.from(lists).forEach(listItem => {
       listItem.addEventListener('click', event => {
@@ -91,11 +95,12 @@ class ClientDashboard extends React.Component {
                         className="fas fa-file menu-image"
                       />
                     </span>
+
                     <span data-menu="account-history" className="menu-name">
                       ACCOUNT HISTORY
                     </span>
                   </li>
-                  {this.props.type !== 'client' ? (
+                  {this.props.auth.type !== 'client' ? (
                     <React.Fragment>
                       <li data-menu="debit-account">
                         <span className="fontAwesame">
@@ -137,17 +142,17 @@ class ClientDashboard extends React.Component {
                       <span id="profile-pix">
                         <i className="fas fa-user" />
                       </span>
-                      <h2 className="m1 md-text">{`${this.props.firstname} ${this.props.lastname}`}</h2>
-                      <h4 className="sm-text">{this.props.email}</h4>
-                      <p className="top-border">{this.props.type}</p>
+                      <h2 className="m1 md-text">{`${this.props.auth.firstname} ${this.props.auth.lastname}`}</h2>
+                      <h4 className="sm-text">{this.props.auth.email}</h4>
+                      <p className="top-border">{this.props.auth.type}</p>
                     </div>
                     <div className="profile-details shadow">
                       <div>Firstname:</div>
-                      <div>{this.props.firstname}</div>
+                      <div>{this.props.auth.firstname}</div>
                       <div>Lastname:</div>
-                      <div>{this.props.lastname}</div>
+                      <div>{this.props.auth.lastname}</div>
                       <div>Email:</div>
-                      <div>{this.props.email}</div>
+                      <div>{this.props.auth.email}</div>
                       <div>Password:</div>
                       <div>**********</div>
                       <div>.</div>
@@ -228,7 +233,7 @@ class ClientDashboard extends React.Component {
                 >
                   <div className="small-acct">
                     <div className="acct-display select-label">
-                      <label>Debit Account:</label>
+                      <label htmlFor="accountNo">Debit Account:</label>
                       <br />
                     </div>
                     <div className="acct-display">
@@ -265,7 +270,7 @@ class ClientDashboard extends React.Component {
                 >
                   <div className="small-acct">
                     <div className="acct-display select-label">
-                      <label>Credit Account:</label>
+                      <label htmlFor="accountNo">Credit Account:</label>
                       <br />
                     </div>
                     <div className="acct-display">
@@ -306,13 +311,19 @@ class ClientDashboard extends React.Component {
   }
 }
 
+ClientDashboard.propTypes = {
+  auth: PropTypes.object,
+  fetchUserAccounts: PropTypes.func,
+  UserTransaction: PropTypes.func,
+  debit: PropTypes.func,
+  credit: PropTypes.func,
+  userTransactions: PropTypes.any
+};
 export const mapStateToProps = state => {
   return {
-    firstname: state.auth.user.firstname,
-    lastname: state.auth.user.lastname,
-    email: state.auth.user.email,
-    type: state.auth.user.type,
-    userTransactions: state.userTransactions
+    auth: state.auth.user,
+    userTransactions: state.userTransactions,
+    accounts: state.accounts.accounts
   };
 };
 
@@ -320,7 +331,8 @@ export const mapDispatchToProps = dispatch => {
   return {
     UserTransaction: accountNo => dispatch(userTransactionAction(accountNo)),
     debit: (accountNo, amount) => dispatch(debit(accountNo, amount)),
-    credit: (accountNo, amount) => dispatch(credit(accountNo, amount))
+    credit: (accountNo, amount) => dispatch(credit(accountNo, amount)),
+    fetchUserAccounts: emailAddress => dispatch(fetchUserAccounts(emailAddress))
   };
 };
 

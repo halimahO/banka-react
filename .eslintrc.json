@@ -3,9 +3,19 @@
   "env": {
     "browser": true,
     "es6": true,
+    "node": true,
     "jest": true
   },
-  "extends": ["airbnb", "prettier", "plugin:react/recommended"],
+  "settings": {
+    "react": {
+      "version": "16.8.6"
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended"
+  ],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -17,10 +27,8 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react", "prettier"],
+  "plugins": ["react", "jsx-a11y"],
   "rules": {
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "comma-dangle": "off",
-    "prettier/prettier": "error"
+    "react/no-unescaped-entities": "off"
   }
 }
