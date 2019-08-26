@@ -2,9 +2,9 @@ import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
-import authReducer from '../../reducers/auth.reducer';
-import { setCurrentUser, logout } from '../../actions/auth.action';
-import { SET_CURRENT_USER } from '../../action-types';
+import authReducer from '../reducers/auth.reducer';
+import { setCurrentUser, logout } from '../actions/auth.action';
+import { SET_CURRENT_USER } from '../action-types';
 
 configure({ adapter: new Adapter() });
 const middleware = [thunk];

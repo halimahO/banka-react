@@ -11,7 +11,7 @@ export const signupError = error => {
   return { type: types.SIGNUP_ERROR, payload: error };
 };
 
-const signupAction = (user, history) => {
+export const signupAction = (user, history) => {
   return async dispatch => {
     try {
       const response = await axios.post(

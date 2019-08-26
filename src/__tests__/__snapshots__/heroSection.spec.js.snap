@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HeroSection/> rendering should render HeroSection without crashing 1`] = `ShallowWrapper {}`;

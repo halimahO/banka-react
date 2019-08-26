@@ -1,4 +1,3 @@
-/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -39,7 +38,7 @@ class LoginPage extends React.Component {
           <div className="form-div">
             <form onSubmit={this.handleSubmit}>
               <div>
-                <label>EMAIL ADDRESS</label>
+                <label htmlFor="emailInput">EMAIL ADDRESS</label>
                 <br />
                 <input
                   id="emailInput"
@@ -51,7 +50,7 @@ class LoginPage extends React.Component {
                 />
               </div>
               <div>
-                <label>
+                <label htmlFor="password">
                   <p id="password-label">PASSWORD </p>
                 </label>
                 <input

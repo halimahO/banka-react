@@ -10,7 +10,7 @@ export const createAccountError = error => {
   return { type: types.CREATE_ACCOUNT_ERROR, payload: error };
 };
 
-const createAccountAction = (type, history) => {
+export const createAccountAction = type => {
   return async dispatch => {
     const token = localStorage.getItem('token');
     try {
@@ -26,7 +26,9 @@ const createAccountAction = (type, history) => {
       );
       if (response.status === 201) {
         const { data } = response.data;
-        toast.success('Account created Successfully');
+        toast.success(
+          `Account created Successfully. Your account number is: ${data.accountNumber}`
+        );
         dispatch(createAccountSuccess(data));
       }
     } catch (err) {

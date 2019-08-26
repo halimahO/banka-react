@@ -1,5 +1,8 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import navBarLogo from '../../img/logo-blue.png';
 import menu from '../../img/menu.png';
@@ -94,7 +97,7 @@ class NavigationBarDashboard extends React.Component {
                       <li data-menu="account-history" onClick={toggleSidebar}>
                         Account History
                       </li>
-                      {this.props.type !== 'client' ? (
+                      {this.props.auth.user.type !== 'client' ? (
                         <React.Fragment>
                           <li data-menu="debit-account" onClick={toggleSidebar}>
                             Debit Account
@@ -121,10 +124,17 @@ class NavigationBarDashboard extends React.Component {
     );
   }
 }
+
+NavigationBarDashboard.propTypes = {
+  logout: PropTypes.func,
+  history: PropTypes.object,
+  isAuthenticated: PropTypes.bool,
+  auth: PropTypes.object
+};
+
 export const mapStateToProps = state => {
   return {
     auth: state.auth,
-    type: state.auth.user.type
   };
 };
 

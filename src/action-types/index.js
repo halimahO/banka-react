@@ -11,3 +11,4 @@ export const DEBIT_SUCCESS = 'DEBIT_SUCCESS';
 export const DEBIT_ERROR = 'DEBIT_ERROR';
 export const CREDIT_SUCCESS = 'CREDIT_SUCCESS';
 export const CREDIT_ERROR = 'CREDIT_ERROR';
+export const ADD_ACCOUNTS = 'ADD_ACCOUNTS';
