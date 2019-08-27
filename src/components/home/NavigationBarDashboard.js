@@ -66,9 +66,6 @@ class NavigationBarDashboard extends React.Component {
                   <li>
                     <Link to="/create-account">Open an Account</Link>
                   </li>
-                  <li>
-                    <Link to="/">Log out</Link>
-                  </li>
                 </ul>
               </div>
             </div>
@@ -116,9 +113,6 @@ class NavigationBarDashboard extends React.Component {
                         </React.Fragment>
                       ) : null}
                     </div>
-                    <li>
-                      <Link to="/">Log out</Link>
-                    </li>
                   </ul>
                 </div>
               </div>

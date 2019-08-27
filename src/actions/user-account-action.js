@@ -20,7 +20,6 @@ export const getUserTransaction = accountNo => {
           headers: { authorization: `Bearer ${token}` }
         }
       );
-      console.log('aaaaaaaaaa', response.status);
       if (response.status === 200) {
         const { data } = response.data;
         const transactions = data.results;

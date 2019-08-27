@@ -122,7 +122,7 @@ describe('<NavigationBarLogin/> rendering', () => {
   it('should simulate sidebar toggle', () => {
     const component = mount(
       <BrowserRouter>
-        <NavigationBarLogin.WrappedComponent {...props} />
+        <NavigationBarLogin {...props} />
       </BrowserRouter>
     );
     const instance = component.find('NavigationBarLogin').instance();

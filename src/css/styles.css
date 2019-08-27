@@ -675,7 +675,7 @@ tr:nth-child(odd) {
   }
 }
 
-@media all and (max-width: 700px) {
+@media all and (max-width: 800px) {
   .dashboard {
     grid-template-columns: 1fr;
   }
