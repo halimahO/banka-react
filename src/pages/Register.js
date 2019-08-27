@@ -5,7 +5,7 @@ import NavigationBar from '../components/home/NavigationBarLogin';
 import Footer from '../components/Footer';
 import signupAction from '../actions/signup.action';
 
-class Register extends React.Component {
+export class Register extends React.Component {
   state = {
     firstname: '',
     lastname: '',
@@ -148,11 +148,11 @@ class Register extends React.Component {
 }
 
 Register.propTypes = {
-  history: PropTypes.object.isRequired,
-  signupAction: PropTypes.func.isRequired
+  history: PropTypes.object,
+  signupAction: PropTypes.func
 };
 
-const mapDispatchToProps = dispatch => {
+export const mapDispatchToProps = dispatch => {
   return {
     signupAction: async (userCredentials, history) => {
       return dispatch(await signupAction(userCredentials, history));

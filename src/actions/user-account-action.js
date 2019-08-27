@@ -10,7 +10,7 @@ export const userTransactionError = error => {
   return { type: types.USER_TRANSACTION_ERROR, payload: error };
 };
 
-const getUserTransaction = accountNo => {
+export const getUserTransaction = accountNo => {
   return async dispatch => {
     const token = localStorage.getItem('token');
     try {
@@ -20,6 +20,7 @@ const getUserTransaction = accountNo => {
           headers: { authorization: `Bearer ${token}` }
         }
       );
+      console.log('aaaaaaaaaa', response.status);
       if (response.status === 200) {
         const { data } = response.data;
         const transactions = data.results;

@@ -5,8 +5,8 @@ import { MemoryRouter as Router, BrowserRouter } from 'react-router-dom';
 import thunk from 'redux-thunk';
 import configMockStore from 'redux-mock-store';
 import NavigationBar from '../components/home/NavigationBar';
-import NavBarDashboard from '../components/home/NavigationBarDashboard';
 import NavigationBarDashboard from '../components/home/NavigationBarDashboard';
+import NavigationBarLogin from '../components/home/NavigationBarLogin';
 
 const initialState = {
   isAuthenticated: false,
@@ -76,16 +76,6 @@ describe('<NavigationBar/> rendering', () => {
 
     expect(spy).toHaveBeenCalled();
   });
-
-  //   it('it should handle logout', () => {
-  //     const link = wrapper.find('#logout');
-  //     const spy = jest.spyOn(wrapper.instance(), 'handleLogOut');
-  //     link.simulate('click');
-  //     const event = { preventefault: jest.fn() };
-  //     wrapper.instance().forceUpdate();
-  //     expect(event.preventDefault).toHaveBeenCalled();
-  //     expect(spy).toHaveBeenCalled();
-  //   });
 });
 
 const wrapperDashboard = shallow(
@@ -96,8 +86,50 @@ const wrapperDashboard = shallow(
   </Provider>
 );
 
-describe('<NavigationBar/> rendering', () => {
+describe('<NavigationBarDashboard/> rendering', () => {
   it('should render without crashing', () => {
     expect(wrapperDashboard).toMatchSnapshot();
+  });
+
+  it('should simulate sidebar toggle', () => {
+    const component = mount(
+      <BrowserRouter>
+        <NavigationBarDashboard.WrappedComponent {...props} />
+      </BrowserRouter>
+    );
+    const instance = component.find('NavigationBarDashboard').instance();
+    const spy = jest.spyOn(instance, 'toggleSidebar');
+    instance.forceUpdate();
+    component.find('.menuToggle').simulate('click');
+
+    expect(spy).toHaveBeenCalled();
+  });
+});
+
+const wrapperLogin = shallow(
+  <Provider store={store}>
+    <Router>
+      <NavigationBarLogin {...props} />
+    </Router>
+  </Provider>
+);
+
+describe('<NavigationBarLogin/> rendering', () => {
+  it('should render without crashing', () => {
+    expect(wrapperLogin).toMatchSnapshot();
+  });
+
+  it('should simulate sidebar toggle', () => {
+    const component = mount(
+      <BrowserRouter>
+        <NavigationBarLogin.WrappedComponent {...props} />
+      </BrowserRouter>
+    );
+    const instance = component.find('NavigationBarLogin').instance();
+    const spy = jest.spyOn(instance, 'toggleSidebar');
+    instance.forceUpdate();
+    component.find('.menuSidebar').simulate('click');
+
+    expect(spy).toHaveBeenCalled();
   });
 });

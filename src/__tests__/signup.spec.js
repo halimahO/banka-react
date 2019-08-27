@@ -1,13 +1,57 @@
-import moxios from 'moxios';
 import axios from 'axios';
+import React from 'react';
 import thunk from 'redux-thunk';
+import { shallow, mount } from 'enzyme';
+import { BrowserRouter } from 'react-router-dom';
 import configureMockStore from 'redux-mock-store';
 import { toast } from 'react-toastify';
-import { signupAction, signupError } from '../actions/signup.action';
+import { signupAction } from '../actions/signup.action';
 import { SIGNUP_SUCCESS, SIGNUP_ERROR } from '../action-types/index';
 import signupReducer from '../reducers/signupReducer';
+import { Register, mapDispatchToProps } from '../pages/Register';
 
 jest.mock('axios');
+
+describe('Signup component Tests', () => {
+  const props = {
+    signupAction: jest.fn(),
+    history: {}
+  };
+
+  it('renders the Login component correctly', () => {
+    const wrapper = shallow(<Register {...props} />);
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should simulate an onchange event on form input', () => {
+    const event = {
+      preventDefault() {},
+      target: { name: 'leemar', value: 'leemar@mail.com' }
+    };
+    const component = mount(
+      <BrowserRouter>
+        <Register {...props} />
+      </BrowserRouter>
+    );
+
+    const inputTag = component.find('input').at(0);
+    inputTag.simulate('change', event);
+  });
+
+  it('should render component successfully and check form interactions', () => {
+    const component = mount(
+      <BrowserRouter>
+        <Register {...props} />
+      </BrowserRouter>
+    );
+    component.find('form').simulate('submit');
+  });
+
+  it('should dispatch signup request action', () => {
+    const dispatch = jest.fn();
+    mapDispatchToProps(dispatch).signupAction();
+  });
+});
 
 describe('Signup Actions', () => {
   const userCredentials = {
@@ -46,7 +90,7 @@ describe('Signup Actions', () => {
 
     axios.post.mockResolvedValueOnce(mockData);
 
-    const expectedActions = [{ type: 'SIGNUP_SUCCESS', payload: mockData }];
+    const expectedActions = [{ type: 'SET_CURRENT_USER', payload: mockData }];
     const historyObject = {
       push: jest.fn()
     };
