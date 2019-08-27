@@ -2,4 +2,6 @@
 
 exports[`<NavigationBar/> rendering should render without crashing 1`] = `ShallowWrapper {}`;
 
-exports[`<NavigationBar/> rendering should render without crashing 2`] = `ShallowWrapper {}`;
+exports[`<NavigationBarDashboard/> rendering should render without crashing 1`] = `ShallowWrapper {}`;
+
+exports[`<NavigationBarLogin/> rendering should render without crashing 1`] = `ShallowWrapper {}`;

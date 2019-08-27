@@ -11,7 +11,7 @@ const options = [
   { value: 'savings', label: 'Savings' },
   { value: 'current', label: 'Current' }
 ];
-class CreateAccountPage extends React.Component {
+export class CreateAccountPage extends React.Component {
   state = {
     selectedAccountType: null
   };
@@ -52,6 +52,7 @@ class CreateAccountPage extends React.Component {
                 <br />
                 <br />
                 <Select
+                  className="selectChange"
                   value={selectedAccountType}
                   onChange={this.handleChange}
                   options={options}
@@ -70,9 +71,9 @@ class CreateAccountPage extends React.Component {
 }
 CreateAccountPage.propTypes = {
   history: PropTypes.object.isRequired,
-  createAccountAction: PropTypes.func.isRequired,
-  firstname: PropTypes.string.isRequired,
-  lastname: PropTypes.string.isRequired
+  createAccountAction: PropTypes.func,
+  firstname: PropTypes.string,
+  lastname: PropTypes.string
 };
 
 export const mapStateToProps = state => {

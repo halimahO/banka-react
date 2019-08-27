@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login component Tests renders the Login component correctly 1`] = `ShallowWrapper {}`;
+
+exports[`Signup component Tests renders the Login component correctly 1`] = `ShallowWrapper {}`;

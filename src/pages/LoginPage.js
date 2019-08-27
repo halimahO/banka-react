@@ -5,7 +5,7 @@ import NavigationBar from '../components/home/NavigationBarLogin';
 import Footer from '../components/Footer';
 import loginAction from '../actions/login.action';
 
-class LoginPage extends React.Component {
+export class LoginPage extends React.Component {
   state = {
     email: '',
     password: ''
@@ -81,7 +81,7 @@ LoginPage.propTypes = {
   loginAction: PropTypes.func.isRequired
 };
 
-const mapDispatchToProps = dispatch => {
+export const mapDispatchToProps = dispatch => {
   return {
     loginAction: async (userCredentials, history) => {
       return dispatch(await loginAction(userCredentials, history));

@@ -3,13 +3,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import NavigationBar from '../components/home/NavigationBarDashboard';
 import Footer from '../components/Footer';
-import { fetchUserAccounts } from '../actions/getAllAccount.action';
 import userTransactionAction from '../actions/user-account-action';
 import { debit, credit } from '../actions/transaction.action';
 import image from '../img/dashboard-img.png';
 import PropTypes from 'prop-types';
 
-class ClientDashboard extends React.Component {
+export class ClientDashboard extends React.Component {
   state = {
     accountNo: '',
     amount: 0
@@ -28,7 +27,7 @@ class ClientDashboard extends React.Component {
       document.getElementById(menuId).classList.add('active');
     };
 
-    this.props.fetchUserAccounts(this.props.auth.email);
+    // this.props.fetchUserAccounts(this.props.auth.email);
 
     Array.from(lists).forEach(listItem => {
       listItem.addEventListener('click', event => {
@@ -256,6 +255,7 @@ class ClientDashboard extends React.Component {
                       placeholder="Amount..."
                     />
                     <button
+                      id="handleDebit"
                       type="submit"
                       className="btn-small cursor"
                       onClick={this.handleDebit}
@@ -277,7 +277,7 @@ class ClientDashboard extends React.Component {
                       <input
                         className="dashboard-input acct-number-width"
                         type="text"
-                        name="number"
+                        name="accountNo"
                         onChange={this.handleChange}
                         placeholder="Account number"
                       />
@@ -322,8 +322,8 @@ ClientDashboard.propTypes = {
 export const mapStateToProps = state => {
   return {
     auth: state.auth.user,
-    userTransactions: state.userTransactions,
-    accounts: state.accounts.accounts
+    userTransactions: state.userTransactions
+    // accounts: state.accounts.accounts
   };
 };
 
@@ -331,8 +331,8 @@ export const mapDispatchToProps = dispatch => {
   return {
     UserTransaction: accountNo => dispatch(userTransactionAction(accountNo)),
     debit: (accountNo, amount) => dispatch(debit(accountNo, amount)),
-    credit: (accountNo, amount) => dispatch(credit(accountNo, amount)),
-    fetchUserAccounts: emailAddress => dispatch(fetchUserAccounts(emailAddress))
+    credit: (accountNo, amount) => dispatch(credit(accountNo, amount))
+    // fetchUserAccounts: emailAddress => dispatch(fetchUserAccounts(emailAddress))
   };
 };
 

@@ -6,13 +6,20 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import navBarLogo from '../../img/logo-blue.png';
 import menu from '../../img/menu.png';
-import { logout } from '../../actions/auth.action';
 
 class NavigationBarDashboard extends React.Component {
-  handleLogOut = e => {
-    e.preventDefault();
-    this.props.logout();
-    this.props.history.push('/');
+  constructor() {
+    super();
+    this.sidebar = React.createRef();
+  }
+
+  toggleSidebar = () => {
+    const sidebar = this.sidebar.current;
+    if (sidebar.style.display === 'none') {
+      sidebar.style.display = 'block';
+    } else {
+      sidebar.style.display = 'none';
+    }
   };
 
   render() {
@@ -38,14 +45,6 @@ class NavigationBarDashboard extends React.Component {
         ).innerHTML = tartgetSectionId.replace(/-/g, ' ');
       });
     });
-    const toggleSidebar = () => {
-      const sidebar = document.getElementById('sidebar');
-      if (sidebar.style.display === 'none') {
-        sidebar.style.display = 'block';
-      } else {
-        sidebar.style.display = 'none';
-      }
-    };
     return (
       <div className="shadow">
         <div className="container">
@@ -77,12 +76,12 @@ class NavigationBarDashboard extends React.Component {
               <div className="hidden-navbar">
                 <img
                   id="menu"
-                  className="nav-style"
+                  className="nav-style menuToggle"
                   src={menu}
                   alt=""
-                  onClick={toggleSidebar}
+                  onClick={this.toggleSidebar}
                 />
-                <div id="sidebar">
+                <div ref={this.sidebar} id="sidebar">
                   <ul>
                     <li>
                       <Link to="/">Home</Link>
@@ -94,17 +93,23 @@ class NavigationBarDashboard extends React.Component {
                       <Link to="/create-account">Open an Account</Link>
                     </li>
                     <div className="menu-items dashboard-menu">
-                      <li data-menu="account-history" onClick={toggleSidebar}>
+                      <li
+                        data-menu="account-history"
+                        onClick={this.toggleSidebar}
+                      >
                         Account History
                       </li>
                       {this.props.auth.user.type !== 'client' ? (
                         <React.Fragment>
-                          <li data-menu="debit-account" onClick={toggleSidebar}>
+                          <li
+                            data-menu="debit-account"
+                            onClick={this.toggleSidebar}
+                          >
                             Debit Account
                           </li>
                           <li
                             data-menu="credit-account"
-                            onClick={toggleSidebar}
+                            onClick={this.toggleSidebar}
                           >
                             Credit Account
                           </li>
@@ -126,7 +131,6 @@ class NavigationBarDashboard extends React.Component {
 }
 
 NavigationBarDashboard.propTypes = {
-  logout: PropTypes.func,
   history: PropTypes.object,
   isAuthenticated: PropTypes.bool,
   auth: PropTypes.object
@@ -134,16 +138,8 @@ NavigationBarDashboard.propTypes = {
 
 export const mapStateToProps = state => {
   return {
-    auth: state.auth,
+    auth: state.auth
   };
 };
 
-export const mapDispatchToProps = dispatch => {
-  return {
-    logout: history => dispatch(logout(history))
-  };
-};
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(NavigationBarDashboard);
+export default connect(mapStateToProps)(NavigationBarDashboard);

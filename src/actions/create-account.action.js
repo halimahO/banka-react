@@ -15,6 +15,7 @@ export const createAccountAction = type => {
     const token = localStorage.getItem('token');
     try {
       if (type === null) {
+        /* istanbul ignore next */
         return toast.error('Account type is required');
       }
       const response = await axios.post(

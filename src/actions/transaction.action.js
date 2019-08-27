@@ -33,7 +33,7 @@ export const debit = (accountNo, amount) => {
 
       if (response.status === 201) {
         const { data } = response.data;
-        toast.success('debit');
+        toast.success('Debit transaction successful');
         dispatch(debitSuccess(data));
         return data;
       }
@@ -49,6 +49,7 @@ export const debit = (accountNo, amount) => {
         Array.isArray(error) ||
         typeof error === 'object'
       ) {
+        /* istanbul ignore next */
         toast.error('Account number or Amount is invalid');
       }
     }
@@ -70,7 +71,7 @@ export const credit = (accountNo, amount) => {
 
       if (response.status === 201) {
         const { data } = response.data;
-        toast.success('credit');
+        toast.success('Credit transaction successful');
         dispatch(creditSuccess(data));
         return data;
       }
@@ -86,6 +87,7 @@ export const credit = (accountNo, amount) => {
         Array.isArray(error) ||
         typeof error === 'object'
       ) {
+        /* istanbul ignore next */
         toast.error('Account number or Amount is invalid');
       }
     }
