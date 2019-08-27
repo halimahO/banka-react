@@ -53,7 +53,7 @@ class NavigationBarLogin extends React.Component {
                   alt=""
                   onClick={this.toggleSidebar}
                 />
-                <div id="sidebar">
+                <div ref={this.sidebar} id="sidebar">
                   <ul>
                     <li className="current">
                       <Link to="/">Home</Link>

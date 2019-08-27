@@ -154,6 +154,12 @@ export class ClientDashboard extends React.Component {
                       <div>{this.props.auth.email}</div>
                       <div>Password:</div>
                       <div>**********</div>
+                      <div>Account Number:</div>
+                      <div>
+                        {Object.keys(this.props.newAccount).length > 0
+                          ? this.props.newAccount.account.accountNumber
+                          : ''}
+                      </div>
                       <div>.</div>
                       <div>
                         <button type="submit" className="btn btn-reset">
@@ -207,19 +213,21 @@ export class ClientDashboard extends React.Component {
                           <th>Transaction Date</th>
                           <th>Transaction type</th>
                           <th>Amount</th>
+                          <th>Old Balance</th>
+                          <th>New Balance</th>
                         </tr>
                       </thead>
                       <tbody>
                         {this.props.userTransactions.map(transaction => {
                           return (
-                            <React.Fragment>
-                              <tr>
-                                <td>{transaction.id}</td>
-                                <td>{transaction.createdon}</td>
-                                <td>{transaction.type}</td>
-                                <td>{transaction.amount}</td>
-                              </tr>
-                            </React.Fragment>
+                            <tr key={transaction.id}>
+                              <td>{transaction.id}</td>
+                              <td>{transaction.createdon}</td>
+                              <td>{transaction.type}</td>
+                              <td>{transaction.amount}</td>
+                              <td>{transaction.oldbalance}</td>
+                              <td>{transaction.newbalance}</td>
+                            </tr>
                           );
                         })}
                       </tbody>
@@ -317,13 +325,15 @@ ClientDashboard.propTypes = {
   UserTransaction: PropTypes.func,
   debit: PropTypes.func,
   credit: PropTypes.func,
-  userTransactions: PropTypes.any
+  userTransactions: PropTypes.any,
+  accountNumber: PropTypes.number,
+  newAccount: PropTypes.object
 };
 export const mapStateToProps = state => {
   return {
     auth: state.auth.user,
-    userTransactions: state.userTransactions
-    // accounts: state.accounts.accounts
+    userTransactions: state.userTransactions,
+    newAccount: state.newAccount
   };
 };
 

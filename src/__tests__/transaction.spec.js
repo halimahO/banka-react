@@ -48,7 +48,9 @@ describe('Transactions Actions', () => {
 
     axios.post.mockResolvedValueOnce(mockData);
 
-    const expectedActions = [{ payload: mockData.data, type: DEBIT_SUCCESS }];
+    const expectedActions = [
+      { payload: mockData.data.data, type: DEBIT_SUCCESS }
+    ];
 
     store
       .dispatch(
@@ -118,7 +120,9 @@ describe('Transactions Actions', () => {
 
     axios.post.mockResolvedValueOnce(mockData);
 
-    const expectedActions = [{ payload: mockData.data, type: CREDIT_SUCCESS }];
+    const expectedActions = [
+      { payload: mockData.data.data, type: CREDIT_SUCCESS }
+    ];
 
     store
       .dispatch(

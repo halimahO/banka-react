@@ -89,8 +89,8 @@ describe('Login Actions', () => {
     axios.post.mockResolvedValueOnce(mockData);
 
     const expectedActions = [
-      { payload: mockData.data, type: LOGIN_SUCCESS },
-      { type: SET_CURRENT_USER }
+      { payload: mockData.data.data, type: LOGIN_SUCCESS },
+      { payload: mockData.data.data, type: SET_CURRENT_USER }
     ];
     const historyObject = {
       push: jest.fn()
